@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from tonedear.com/ear-training/chord-identification by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jul 2020 04:43:28 GMT -->
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../images/favicon.gif">
+    
+    <title>Music Chord Identification Ear Training</title>
+    
+        <!-- Bootstrap core CSS -->
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+            <script src="../soundfont/acoustic_grand_piano-mp3.js" type="text/javascript"></script>
+            <script src="../inc/shim/Base64.js" type="text/javascript"></script>
+            <script src="../inc/shim/Base64binary.js" type="text/javascript"></script>
+            <script src="../inc/shim/WebAudioAPI.js" type="text/javascript"></script>
+
+            <script src="../js/midi/audioDetect.js" type="text/javascript"></script>
+            <script src="../js/midi/gm.js" type="text/javascript"></script>
+            <script src="../js/midi/loader.js" type="text/javascript"></script>
+            <script src="../js/midi/plugin.audiotag.js" type="text/javascript"></script>
+            <script src="../js/midi/plugin.webaudio.js" type="text/javascript"></script>
+            <script src="../js/midi/plugin.webmidi.js" type="text/javascript"></script>
+
+            <script src="../js/util/dom_request_xhr.js" type="text/javascript"></script>
+            <script src="../js/util/dom_request_script.js" type="text/javascript"></script>
+
+    <script src="../js/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="../js/jQuery.fastClick.js" type="text/javascript"></script>
+    <script src="../js/ear-training/helpers.js" type="text/javascript"></script>
+    <script src="../js/jquery.hotkeys.js" type="text/javascript"></script>
+    <script src="../js/ear-training/base.js" type="text/javascript"></script>
+    <script src="../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-49725761-1', 'tonedear.com');
+      ga('send', 'pageview');
+
+    </script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5512fd114c62db73" async="async"></script>    
+    
+    <style type="text/css">
+      a.down {
+      background: #bbb;
+      border-color:#bbb;
+      }
+      a.down:hover {
+      background: #888;
+      border-color:#888;
+      }
+      .interval-toggle {
+      width:65%;
+      margin-bottom:1px;
+      }
+      a.answer-btn {
+      margin-bottom:2px;
+      }
+    </style>
+    
+    <script src="../js/ear-training/chords.js" type="text/javascript"></script>
+  </head>
+  <body>
+    
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Toned Ear: Ear Training</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">Home</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Exercises <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="intervals.html">Intervals</a></li>
+                <li><a href="chord-identification.html">Chords</a></li>
+                <li><a href="scale-identification.html">Scales</a></li>
+                <li><a href="chord-progressions.html">Chord Progressions</a></li>
+                <li><a href="absolute-perfect-pitch-test.html">Perfect Pitch</a></li>
+                <li><a href="functional-solfege-scale-degrees.html">Scale Degrees</a></li>
+                <li><a href="intervals-in-solfege-context.html">Intervals in Context</a></li>
+	            <li><a href="melodic-dictation-practice.html">Melodic Dictation</a></li>
+              </ul>
+            </li>
+            <li><a href="how-to-practice.html">How to practice</a></li>
+<li><a href="https://tonesavvy.com/">For teachers</a></li>            <!--li><a href="/for-individuals-premium">Premium For Individuals</a></li-->
+          </ul>
+          
+	      <ul class="nav navbar-nav navbar-right">
+<li><a href="../android-ios-ear-training-app.html">Android & iOS App</a></li>            <li><a href="../contact.html">Contact Me</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="row" id="quickstart-row">
+	    <div class="col-md-6 col-md-offset-2">
+	      <div class="form-horizontal" role="form">
+	        <div class="form-group">
+	          <div class="col-md-9 col-md-offset-3">
+	            <h1 style="font-size:35px;margin-top:0px;">Chord Identification Quiz</h1>
+	            <p>In this exercise, you will hear a chord. Your goal is to identify the type of chord that you heard. For best results, practice a little bit every day.</p>
+                <p>If you are a teacher and would like to use this exercise and others like it in the classroom, check out <a href="https://tonesavvy.com/">ToneSavvy, the for-teachers version of this website</a>.</p>	          </div>
+              
+	          <label for="inputEmail3" class="col-md-3 control-label">Chords</label>
+	          <div class="col-md-9">
+		        <select id="quickstart-toggles" class="form-control">
+		          <option value="triads" selected>Triads (maj, min, dim, aug)</option>
+		          <option value="sevenths" >Basic Sevenths (dom7, maj7, min7)</option>
+		          <option value="triads-and-sevenths" >Triads and Basic Sevenths</option>
+		          <option value="triads-and-all-sevenths" >Triads and All Sevenths</option>
+		        </select>
+		        <p class="text-muted">You can always add or remove individual chords later.</p>
+	          </div>
+	        </div>
+            
+	        <div class="form-group">
+	          <label class="col-md-3 control-label">Inversions</label>
+	          <div class="col-md-9">
+		        <input type="checkbox" num="0" class="quickstart-inversion" id="quickstart-root-position" checked> <label for="quickstart-root-position"><span style="font-weight:normal;" class="text-muted">Root position</span></label><br>
+		        <input type="checkbox" num="1" class="quickstart-inversion" id="quickstart-1st-inversion"> <label for="quickstart-1st-inversion"><span style="font-weight:normal;" class="text-muted">1st inversion</span></label><br>
+		        <input type="checkbox" num="2" class="quickstart-inversion" id="quickstart-2nd-inversion"> <label for="quickstart-2nd-inversion"><span style="font-weight:normal;" class="text-muted">2nd inversion</span></label><br>
+		        <input type="checkbox" num="3" class="quickstart-inversion" id="quickstart-3rd-inversion"> <label for="quickstart-3rd-inversion"><span style="font-weight:normal;" class="text-muted">3rd inversion</span></label>
+	          </div>
+	        </div>
+            
+	        <div class="form-group">
+	          <label for="spinner" class="col-md-3 control-label">Questions</label>
+	          <div class="col-md-9">
+		        <input type="number" class="form-control" value="0" min="0" id="quickstart-max-questions">
+		        <p class="text-muted">Leave as 0 for never-ending quiz</p>
+	          </div>
+	        </div>
+            
+            	        <div class="form-group"><div id="show-advanced" class="col-md-9 col-md-offset-3"><a class="btn btn-default" style="cursor: pointer; cursor: hand;">+ show advanced options</a><br><br></div></div>
+	        <script>
+	          $("#show-advanced").click(function() {
+	          $(this).hide();
+	          $("#advanced-options").show();
+	          });
+	        </script>
+            
+	        <div id="advanced-options" style="display:none;">
+	          <div class="form-group">
+		        <label for="quickstart-autoproceed" class="col-md-3 control-label">Auto proceed</label>
+		        <div class="col-md-9">
+		          <input type="checkbox" id="quickstart-autoproceed"> <label style="display:inline" for="quickstart-autoproceed"><span style="font-weight:normal;" class="text-muted">Automatically proceed to the next chord after identifying the correct answer</span></label>
+		        </div>
+	          </div>
+	          
+	          <div class="form-group">
+		        <label for="quickstart-fixed-root"  class="col-md-3 control-label">Fixed Root</label>
+		        <div class="col-md-9">
+		          <input type="checkbox" id="quickstart-fixed-root"> <label style="display:inline" for="quickstart-fixed-root"><span for="quickstart-fixed-root" style="font-weight:normal;" class="text-muted">Use the same root note for every chord.</span></label>
+		        </div>
+	          </div>
+	          
+	          <div class="form-group">
+		        <label for="quickstart-hotkeys" class="col-md-3 control-label">Keyboard Shortcuts</label>
+		        <div class="col-md-9">
+		          <input type="checkbox" id="quickstart-hotkeys"> <label style="display:inline" for="quickstart-hotkeys"><span style="font-weight:normal;" class="text-muted">Select answers with keyboard shortcuts. The hotkey for each choice will be displayed in [square brackets].</span></label>
+		        </div>
+	          </div>
+              
+	          <!--div class="form-group">
+		          <label class="col-md-3 control-label">Instrument</label>
+		          <div class="col-md-9">
+		            <select id="quickstart-instrument" class="form-control">
+		              <option value="0" selected>Grand Piano</option>
+		              <option value="24" >Acoustic Guitar</option>
+		              <option value="40" >Violin</option>
+		              <option value="56" >Trumpet</option>
+		            </select>
+		          </div>
+	          </div-->
+              
+	        </div>
+            
+	        <div class="form-group">
+	          <div class="col-md-offset-3 col-md-9">
+		        <button type="submit" class="btn btn-default" id="start-quiz">Start Quiz</button>
+                <br>
+<div class="addthis_inline_share_toolbox" style="margin-top:10px;" ></div>	          </div>
+	        </div>
+	      </div>
+	    </div>
+      </div>
+      
+      <div class="row" style="display:none;" id="quiz-row">
+	    <div class="col-md-6 col-md-offset-2 text-center loader" id="loader">
+	      <br><br><br>
+	    </div>
+	    <div id="quiz" style="display:none;">
+	      <div class="col-md-6 col-md-offset-2 text-center">
+	        <h1>Chord Identification Quiz</h1>
+                        <a id="level-up-info" data-container="body" data-toggle="popover" data-placement="bottom" data-content="When this bar fills, the difficulty will automatically increase. The bar progress increases when you get questions right and decreases when you get them wrong." style="cursor:pointer;" class="pull-right"><span class="glyphicon glyphicon-question-sign"></span></a>
+            <div class="progress progress-striped active">
+              <div id="progress-bar" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="101" style="width: 0%">
+              </div>
+            </div>
+            <p id="level-up-text" style="display:none;">You've leveled up! Increasing difficulty...</p>	        <p><span id="correct-reps">0</span> of <span id="total-reps">0</span> correct</p>
+	        <a class="btn btn-lg btn-primary" id="hear-next" hotkey="space"><span id="hear-next-text">Hear Next</span> <span class="hotkey-text" style="display:none;"><sup>[spacebar]</sup></span></a>
+	        <a class="btn btn-lg btn-default" id="hear-again" style="display:none;" hotkey="A">Hear Again <span class="hotkey-text" style="display:none;"><sup>[A]</sup></span></a>
+	        <a class="btn btn-lg btn-default" id="hear-individual" style="display:none;" hotkey="D">Hear Individual Notes  <span class="hotkey-text" style="display:none;"><sup>[D]</sup></span></a>
+	        <div id="quiz-messages" style="height:12px;margin-top:15px;"></div>
+	        <h1 id="choices-header">Choices</h1>
+	        <div id="answer-choices">
+	          <div id="chord-choices">
+	          </div>
+	          <br>
+	          <div id="inversion-choices" style="display:none;">
+		        <strong>Inversion</strong>
+	          </div>
+	        </div>
+	        <a id="end-quiz" class="btn btn-default">End Quiz</a>
+            <br>
+<div class="addthis_inline_share_toolbox" style="margin-top:10px;" ></div>	      </div>
+	      
+	      <div class="col-md-4">
+	        <h1>Chords</h1>
+	        <p>Select the chords on which you would like to be tested</p>
+	        <br>
+	        <a id="fixed-root-toggle" class="btn btn-primary down">Fixed Root</a> (Always use same root) <br>
+	        <br>
+	        <a class="btn btn-primary interval-toggle triads triads-and-sevenths triads-and-all-sevenths" chord="maj" answer="maj" hotkey="1">Major</a> <br>
+	        <a class="btn btn-primary interval-toggle triads triads-and-sevenths triads-and-all-sevenths" chord="min" answer="min" hotkey="2">Minor</a> <br>
+	        <a class="btn btn-primary down interval-toggle triads triads-and-sevenths triads-and-all-sevenths" chord="aug" answer="aug" hotkey="3">Augmented</a> <br>
+	        <a class="btn btn-primary down interval-toggle triads triads-and-sevenths triads-and-all-sevenths" chord="dim" answer="dim" hotkey="4">Diminished</a> <br>
+	        <a class="btn btn-primary down interval-toggle" chord="sus2" answer="sus2" hotkey="5">Suspended Second</a> <br>
+	        <a class="btn btn-primary down interval-toggle" chord="sus4" answer="sus4" hotkey="6">Suspended Fourth</a> <br>
+	        <a class="btn btn-primary down interval-toggle triads-and-sevenths sevenths triads-and-all-sevenths" chord="dom7" answer="dom7" hotkey="7">Dominant Seventh</a> <br>
+	        <a class="btn btn-primary down interval-toggle triads-and-sevenths sevenths triads-and-all-sevenths" chord="maj7" answer="maj7" hotkey="8">Major Seventh</a> <br>
+	        <a class="btn btn-primary down interval-toggle triads-and-sevenths sevenths triads-and-all-sevenths" chord="min7" answer="min7" hotkey="9">Minor Seventh</a> <br>
+	        <a class="btn btn-primary down interval-toggle triads-and-all-sevenths" chord="minmaj7" answer="minmaj7" hotkey="0">Minor Major Seventh</a> <br>
+	        <a class="btn btn-primary down interval-toggle triads-and-all-sevenths" chord="dim7" answer="dim7" hotkey="Q">Diminished Seventh</a> <br>
+	        <a class="btn btn-primary down interval-toggle triads-and-all-sevenths" chord="dimmaj7" answer="dimmaj7" hotkey="W">Diminished Major Seventh</a> <br>
+	        <a class="btn btn-primary down interval-toggle triads-and-all-sevenths" chord="halfdim7" answer="halfdim7" hotkey="E">Half Diminished Seventh</a> <br>
+	        <a class="btn btn-primary down interval-toggle triads-and-all-sevenths" chord="aug7" answer="aug7" hotkey="R">Augmented Seventh</a> <br>
+	        <a class="btn btn-primary down interval-toggle triads-and-all-sevenths" chord="augmaj7" answer="augmaj7" hotkey="T">Augmented Major Seventh</a> <br>
+	        <a class="btn btn-primary down interval-toggle" chord="maj6" answer="maj6" hotkey="Y">Major Sixth</a> <br>
+	        <a class="btn btn-primary down interval-toggle" chord="min6" answer="min6" hotkey="U">Minor Sixth</a> <br>
+	        <br>
+	        <input type="checkbox" class="inversion" num="0" hotkey="Z" id="root-position" name="Root position" checked> <label for="root-position"><span style="font-weight:normal;" class="text-muted">Root position</span></label><br>
+	        <input type="checkbox" class="inversion" num="1" hotkey="X" id="1st-inversion" name="1st inversion"> <label for="1st-inversion"><span style="font-weight:normal;" class="text-muted">1st inversion</span></label><br>
+	        <input type="checkbox" class="inversion" num="2" hotkey="C" id="2nd-inversion" name="2nd inversion"> <label for="2nd-inversion"><span style="font-weight:normal;" class="text-muted">2nd inversion</span></label><br>
+	        <input type="checkbox" class="inversion" num="3" hotkey="V" id="3rd-inversion" name="3rd inversion"> <label for="3rd-inversion"><span style="font-weight:normal;" class="text-muted">3rd inversion</span></label>
+	        <br>
+	        <!--select id="instrument" class="form-control" style="margin-top:4px;">
+	          <option value="0" selected>Grand Piano</option>
+	          <option value="24" >Acoustic Guitar </option>
+	          <option value="40" >Violin</option>
+	          <option value="56" >Trumpet</option>
+	        </select-->
+            
+	      </div>
+	    </div>
+      </div>
+      <div class="row" style="display:none;" id="finished-row">
+	    <div class="col-md-6 col-md-offset-2 text-center">
+	      <h1>Finished!</h1>
+	      <p style="font-size:24px;" id="post-quiz-info" style="display:none;">You identified <span id="finished-correct-reps">0</span> of <span id="finished-total-reps">0</span> correctly, or <span id="finished-percentage">0</span>%</p>
+	      <table class="table">
+	        <thead>
+	          <tr>
+		        <th>Chord</th>
+		        <th>Times Heard</th>
+		        <th>Times Wrong</th>
+		        <th>Accuracy</th>
+	          </tr>
+	        </thead>
+	        <tbody id="stats-table-body">
+	        </tbody>
+	      </table>
+          <p style="text-align:left;">If you want to improve, bookmark this exercise and practice a little bit every day. You can read more advice on how to practice ear training <a href="how-to-practice.html">here</a>.</p><p style="text-align:left;">If you would like to purchase TonedEar for offline use as an Android or iOS app, use the links below. <strong>The app is the same as the website, except that you can use it without an internet connection</strong>. If you have any problems with the app, please <a href="contact.html">contact me</a>.</p> <div class="row">
+    <div class="col-xs-6">
+    <a href="https://play.google.com/store/apps/details?id=com.tonedear.tonedear"><img style="width:100%" alt="Get it on Google Play" src="../images/google-play-badge.png"/></a>
+    </div>
+    <div class="col-xs-6">
+    <a href="https://itunes.apple.com/us/app/toned-ear/id1353082892"><img style="width:100%" alt="Get the iOS app" src="../images/apple-store-badge.png" /></a>
+    </div></div><br>	      <a class="btn btn-lg btn-primary" id="start-again">Start Again</a>
+          <br>
+<div class="addthis_inline_share_toolbox" style="margin-top:10px;" ></div>	    </div>
+      </div>
+      
+
+<div class="row" style="margin-top:10px;">
+  <div class="col-md-6 col-md-offset-2">
+
+
+
+        </div>
+      </div>
+    </div> <!-- /container -->
+    
+  </body>
+
+<!-- Mirrored from tonedear.com/ear-training/chord-identification by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jul 2020 04:43:32 GMT -->
+</html>
