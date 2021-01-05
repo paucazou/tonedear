@@ -192,7 +192,7 @@ window.onload = function () {
 	playInterval(td.root_note,Number($(this).prev().attr('interval')));
     });
     $("#hear-next").fastClick(function() {
-        if (td.delay == 0) {
+        if (td.delay == 0 && $("#hear-next-text").text() != "Hear First Question") {
         $("#hear-melodic").show();
         }
     });
