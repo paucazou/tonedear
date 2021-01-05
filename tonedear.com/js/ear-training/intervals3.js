@@ -30,9 +30,9 @@ window.onload = function () {
 	var speed = $('#speed option:selected').val();
 	var interval_type=$('#interval-type option:selected').val();
         console.log("Interval type: ",interval_type);
-	var delay = td.delays[speed];
+	td.selected_delay = td.delays[speed];
         if (interval_type != 'harm') {
-            td.delay = delay;
+            td.delay = td.selected_delay;
         }
         else {td.delay = 0;}
         console.log("Delay: ",td.delay);
@@ -63,6 +63,13 @@ window.onload = function () {
 
         td.intervals = [];
         td.answers = [];
+        td.not_yet_answered = [];
+        // is the number of intervals greater than the number of intervals possible?
+        if ($(".interval-toggle").not('.down').length < td.interval_number) {
+            alert("Number of intervals possible is lower than the number of intervals selected. Please fix that problem.");
+            return;
+            // TODO not fixed
+        }
         var toggle_chosen = [];
         for (var i=0;i<td.interval_number;++i) {
             var elt = td.chooseToggleButton();
@@ -71,11 +78,14 @@ window.onload = function () {
                 toggle_chosen.push(elt);
                 td.intervals.push(Number($(elt).attr('interval')));
                 td.answers.push( Number($(elt).attr('answer')));
+                td.not_yet_answered.push( Number($(elt).attr('answer')));
             }
             else {
                 --i;
             }
         }
+        td.intervals.sort(function(a, b){return a-b});
+        td.answers.sort(function(a, b){return a-b});
         console.log('Intervals and answers arrays');
         console.log(td.intervals);
         console.log(td.answers);
@@ -87,14 +97,22 @@ window.onload = function () {
 	    td.root_note = 45;
 	}
     }
+
     function playInterval(root, interval) {
+        return __play_interval(root, interval, td.delay);
+    }
+
+    function playAsMelodic(root, interval) {
+        return __play_interval(root, interval, td.selected_delay);
+    }
+
+    function __play_interval(root, interval, delay) {
 	MIDI.stopAllNotes();
         MIDI.noteOn(0, root, 127, 0);
         var previous = root;
-        var delay = td.delay;
         td.intervals.forEach(function(item, index, array) {
             console.log(item, index);
-            if (td.delay > 0) {
+            if (delay > 0) {
                 MIDI.noteOff(0, previous, delay);
             }
             var current = root + item;
@@ -118,6 +136,55 @@ window.onload = function () {
 	}
         */
     }
+
+    td.onAnswerBtnClick = function () {
+        var choice = Number($(this).attr('answer'));
+        console.log("In onAnswerBtnClick: choice: ", choice);
+        if (td.answers.indexOf(choice) == -1) {
+            //incorrect answer
+                $('#quiz-messages').html("Nope, \""+ $(this).html() + "\" is not correct.");
+                $(this).addClass('btn-danger');
+                if(!td.attempted_answer) {
+                        td.updateScore(false);
+                        if(td.answer_name in td.incorrect_answers) {
+                            td.incorrect_answers[td.answer_name]+=1;
+                        } else {
+                            td.incorrect_answers[td.answer_name]=1;
+                        }
+                        td.attempted_answer = true;
+                }
+            } else {
+                //correct answer
+                $('#quiz-messages').html("<em>Nice!</em> \""+ $(this).html() + "\" is correct!");
+                $(this).addClass('btn-success');
+                // delete choice from not yet answered array
+                var idx = td.not_yet_answered.indexOf(choice);
+                // correct answer, but already given
+                if (idx == -1) {
+                    return;
+                }
+                td.not_yet_answered.splice(idx,1);
+                if (td.not_yet_answered.length == 0) {
+                $('#hear-next').show();
+                if(!td.attempted_answer){
+                        td.updateScore(true);
+                        if(td.answer_name in td.correct_answers) {
+                            td.correct_answers[td.answer_name]+=1;
+                        } else {
+                            td.correct_answers[td.answer_name]=1;
+                        }
+                        td.attempted_answer = true;
+                }
+                td.onCorrectAnswer();
+                if(td.checkIfFinished()) return;
+                if(td.auto_proceed) {
+                        $('#hear-next').click();
+                }
+                }
+            }
+
+        }
+
     td.hearQuiz = function() {
 	playInterval(td.root_note, td.interval);
     }
