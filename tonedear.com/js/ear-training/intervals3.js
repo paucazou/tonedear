@@ -191,4 +191,14 @@ window.onload = function () {
     $('.listen-btn').fastClick(function() {
 	playInterval(td.root_note,Number($(this).prev().attr('interval')));
     });
+    $("#hear-next").fastClick(function() {
+        if (td.delay == 0) {
+        $("#hear-melodic").show();
+        }
+    });
+    $("#hear-melodic").fastClick(
+        function() {
+            playAsMelodic(td.root_note,1);
+        }
+    );
 };
