@@ -128,6 +128,8 @@
 		        <select id="quickstart-toggles" class="form-control">
 		          <option value="simple" selected >Simple (M3, P5, Octave)</option>
 		          <option value="diatonic" >Diatonic (M2, M3, P4, P5, M6, M7, Octave)</option>
+                          <option value="compound">Compound</option>
+                          <option value="not-compound">All except compound</option>
 		          <option value="all">All</option>
 		        </select>
 		        <p class="text-muted">You can always customize the intervals after starting the quiz.</p>
@@ -260,7 +262,7 @@
             <p id="level-up-text" style="display:none;">You've leveled up! Increasing difficulty...</p>	        <p><span id="correct-reps">0</span> of <span id="total-reps">0</span> correct</p>
 	        <a class="btn btn-lg btn-primary" id="hear-next" hotkey="space"><span id="hear-next-text">Hear Next</span> <span class="hotkey-text" style="display:none;"><sup>[spacebar]</sup></span></a>
 	        <a class="btn btn-lg btn-default" id="hear-again" style="display:none;" hotkey="A">Hear Again <span class="hotkey-text" style="display:none;"><sup>[A]</sup></span></a>
-	        <a class="btn btn-lg btn-default" id="hear-melodic" style="display:none;" hotkey="œ">Hear as melody<span class="hotkey-text" style="display:none;"><sup>[]</sup></span></a>
+	        <a class="btn btn-lg btn-default" id="hear-melodic" style="display:none;" hotkey="œ">Hear as melody<span class="hotkey-text" style="display:none;"><sup>[œ]</sup></span></a>
 	        <div id="quiz-messages" style="height:12px;margin-top:15px;"></div>
 	        <h1 id="choices-header">Choices</h1>
 	        <div id="answer-choices">
@@ -294,20 +296,33 @@
 	        <br>
 	        <a id="fixed-root-toggle" class="btn btn-primary down">Fixed Root</a> (Always begin on same note) <br>
 	        <br>
-	        <a class="btn btn-primary interval-toggle all" interval="1" answer="1" hotkey="W">Minor 2nd</a> <a class="btn btn-default listen-btn">Listen</a> (1 semitone) <br>
-	        <a class="btn btn-primary interval-toggle diatonic all" interval="2" answer="2" hotkey="2">Major 2nd</a> <a class="btn btn-default listen-btn">Listen</a> (2 semitones) <br>
-	        <a class="btn btn-primary down interval-toggle all" interval="3" answer="3" hotkey="E">Minor 3rd</a> <a class="btn btn-default listen-btn">Listen</a> (3 semitones) <br>
-	        <a class="btn btn-primary down interval-toggle simple diatonic all" interval="4" answer="4" hotkey="3">Major 3rd</a> <a class="btn btn-default listen-btn">Listen</a> (4 semitones) <br>
-	        <a class="btn btn-primary down interval-toggle diatonic all" interval="5" answer="5" hotkey="R">Perfect 4th</a> <a class="btn btn-default listen-btn">Listen</a> (5 semitones) <br>
-	        <a class="btn btn-primary down interval-toggle all" interval="6" answer="6" hotkey="T">Tritone</a> <a class="btn btn-default listen-btn">Listen</a> (6 semitones) <br>
-	        <a class="btn btn-primary down interval-toggle simple diatonic all" interval="7" answer="7" hotkey="5">Perfect 5th</a> <a class="btn btn-default listen-btn">Listen</a> (7 semitones) <br>
-	        <a class="btn btn-primary down interval-toggle all" interval="8" answer="8" hotkey="Y">Minor 6th</a> <a class="btn btn-default listen-btn">Listen</a> (8 semitones) <br>
-	        <a class="btn btn-primary down interval-toggle diatonic all" interval="9" answer="9" hotkey="6">Major 6th</a> <a class="btn btn-default listen-btn">Listen</a> (9 semitones) <br>
-	        <a class="btn btn-primary down interval-toggle all" interval="10" answer="10" hotkey="U">Minor 7th</a> <a class="btn btn-default listen-btn">Listen</a> (10 semitones) <br>
-	        <a class="btn btn-primary down interval-toggle diatonic all" interval="11" answer="11" hotkey="7">Major 7th</a> <a class="btn btn-default listen-btn">Listen</a> (11 semitones) <br>
-	        <a class="btn btn-primary down interval-toggle simple diatonic all" interval="12" answer="12" hotkey="8">Octave</a> <a class="btn btn-default listen-btn">Listen</a> (12 semitones) <br>
+	        <a class="btn btn-primary interval-toggle not-compound all" interval="1" answer="1" hotkey="W">Minor 2nd</a> <a class="btn btn-default listen-btn">Listen</a> (1 semitone) <br>
+	        <a class="btn btn-primary interval-toggle not-compound diatonic all" interval="2" answer="2" hotkey="2">Major 2nd</a> <a class="btn btn-default listen-btn">Listen</a> (2 semitones) <br>
+	        <a class="btn btn-primary down interval-toggle not-compound all" interval="3" answer="3" hotkey="E">Minor 3rd</a> <a class="btn btn-default listen-btn">Listen</a> (3 semitones) <br>
+	        <a class="btn btn-primary down interval-toggle simple not-compound diatonic all" interval="4" answer="4" hotkey="3">Major 3rd</a> <a class="btn btn-default listen-btn">Listen</a> (4 semitones) <br>
+	        <a class="btn btn-primary down interval-toggle not-compound diatonic all" interval="5" answer="5" hotkey="R">Perfect 4th</a> <a class="btn btn-default listen-btn">Listen</a> (5 semitones) <br>
+	        <a class="btn btn-primary down interval-toggle not-compound all" interval="6" answer="6" hotkey="T">Tritone</a> <a class="btn btn-default listen-btn">Listen</a> (6 semitones) <br>
+	        <a class="btn btn-primary down interval-toggle simple not-compound diatonic all" interval="7" answer="7" hotkey="5">Perfect 5th</a> <a class="btn btn-default listen-btn">Listen</a> (7 semitones) <br>
+	        <a class="btn btn-primary down interval-toggle not-compound all" interval="8" answer="8" hotkey="Y">Minor 6th</a> <a class="btn btn-default listen-btn">Listen</a> (8 semitones) <br>
+	        <a class="btn btn-primary down interval-toggle diatonic not-compound all" interval="9" answer="9" hotkey="6">Major 6th</a> <a class="btn btn-default listen-btn">Listen</a> (9 semitones) <br>
+	        <a class="btn btn-primary down interval-toggle not-compound all" interval="10" answer="10" hotkey="U">Minor 7th</a> <a class="btn btn-default listen-btn">Listen</a> (10 semitones) <br>
+	        <a class="btn btn-primary down interval-toggle diatonic not-compound all" interval="11" answer="11" hotkey="7">Major 7th</a> <a class="btn btn-default listen-btn">Listen</a> (11 semitones) <br>
+	        <a class="btn btn-primary down interval-toggle simple diatonic not-compound all" interval="12" answer="12" hotkey="8">Octave</a> <a class="btn btn-default listen-btn">Listen</a> (12 semitones) <br>
 	        <a class="btn btn-primary down interval-toggle all" interval="13" answer="13" hotkey="O">Minor 9th</a> <a class="btn btn-default listen-btn">Listen</a> (13 semitones) <br>
 	        <a class="btn btn-primary down interval-toggle all" interval="14" answer="14" hotkey="9">Major 9th</a> <a class="btn btn-default listen-btn">Listen</a> (14 semitones) <br>
+                <a class="btn btn-primary down interval-toggle all compound" interval="13" answer="13" hotkey="O">Minor 9th</a> <a class="btn btn-default listen-btn">Listen</a> (13 semitones) <br>
+                <a class="btn btn-primary down interval-toggle all compound" interval="14" answer="14" hotkey="9">Major 9th</a> <a class="btn btn-default listen-btn">Listen</a> (14 semitones) <br>
+                <a class="btn btn-primary down interval-toggle all compound" interval="15" answer="15" hotkey="D">Minor 10th</a> <a class="btn btn-default listen-btn">Listen</a> (15 semitones) <br>
+                <a class="btn btn-primary down interval-toggle all compound" interval="16" answer="16" hotkey="F">Major 10th</a> <a class="btn btn-default listen-btn">Listen</a> (16 semitones) <br>
+                <a class="btn btn-primary down interval-toggle all compound" interval="17" answer="17" hotkey="G">Perfect 11th</a> <a class="btn btn-default listen-btn">Listen</a> (17 semitones) <br>
+                <a class="btn btn-primary down interval-toggle all compound" interval="18" answer="18" hotkey="H">Tritone 11/12th</a> <a class="btn btn-default listen-btn">Listen</a> (18 semitones) <br>
+                <a class="btn btn-primary down interval-toggle all compound" interval="19" answer="19" hotkey="J">Perfect 12th</a> <a class="btn btn-default listen-btn">Listen</a> (19 semitones) <br>
+                <a class="btn btn-primary down interval-toggle all compound" interval="20" answer="20" hotkey="K">Minor 13th</a> <a class="btn btn-default listen-btn">Listen</a> (20 semitones) <br>
+                <a class="btn btn-primary down interval-toggle all compound" interval="21" answer="21" hotkey="L">Major 13th</a> <a class="btn btn-default listen-btn">Listen</a> (21 semitones) <br>
+                <a class="btn btn-primary down interval-toggle all compound" interval="22" answer="22" hotkey="M">Minor 14th</a> <a class="btn btn-default listen-btn">Listen</a> (22 semitones) <br>
+                <a class="btn btn-primary down interval-toggle all compound" interval="23" answer="23" hotkey="X">Major 14th</a> <a class="btn btn-default listen-btn">Listen</a> (23 semitones) <br>
+                <a class="btn btn-primary down interval-toggle all compound" interval="24" answer="24" hotkey="C">Perfect 15th</a> <a class="btn btn-default listen-btn">Listen</a> (24 semitones) <br>
+
 	        <br>
 	      </div>
 	    </div>
