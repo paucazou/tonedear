@@ -106,6 +106,7 @@ window.onload = function () {
         return __play_interval(root, interval, td.selected_delay);
     }
 
+
     function __play_interval(root, interval, delay) {
 	MIDI.stopAllNotes();
         MIDI.noteOn(0, root, 127, 0);
@@ -189,8 +190,18 @@ window.onload = function () {
 	playInterval(td.root_note, td.interval);
     }
     $('.listen-btn').fastClick(function() {
-	playInterval(td.root_note,Number($(this).prev().attr('interval')));
+        var itvl = Number($(this).prev().attr('interval'));
+        var delay = td.delay;
+        var root = td.root_note
+	MIDI.stopAllNotes();
+        MIDI.noteOn(0, root, 127, 0);
+        if (delay > 0) {
+            MIDI.noteOff(0, root, delay);
+        }
+        var current = root + itvl;
+        MIDI.noteOn(0, current, 127, delay);
     });
+
     $("#hear-next").fastClick(function() {
         if (td.delay == 0 && $("#hear-next-text").text() != "Hear First Question") {
         $("#hear-melodic").show();
